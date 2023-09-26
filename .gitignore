@@ -11,6 +11,30 @@
 .idea/
 .idea_modules/
 
+# CMake
+cmake-build-debug/.cmake/api/v1/query/cache-v2
+cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1
+cmake-build-debug/.cmake/api/v1/query/codemodel-v2
+cmake-build-debug/.cmake/api/v1/query/toolchains-v1
+cmake-build-debug/.cmake/api/v1/reply/cache-v2-66a880d9021c6a572520.json
+cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-fcfff36bef8a8ab5cc6d.json
+cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-b63342f4431f131af162.json
+cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json
+cmake-build-debug/.cmake/api/v1/reply/index-2023-09-26T20-31-26-0978.json
+cmake-build-debug/.cmake/api/v1/reply/target-heap-Debug-356c53b1d549ba003566.json
+cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-d9b42e65560ab50b0cd2.json
+cmake-build-debug/build.ninja
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
 # Precompiled Headers
 *.gch
 *.pch
@@ -34,3 +58,4 @@
 *.exe
 *.out
 *.app
+
