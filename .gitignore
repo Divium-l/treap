@@ -7,6 +7,10 @@
 *.o
 *.obj
 
+# CLion
+.idea/
+.idea_modules/
+
 # Precompiled Headers
 *.gch
 *.pch
