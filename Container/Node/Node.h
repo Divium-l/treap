@@ -14,10 +14,6 @@ namespace mit {
         explicit Node(T key) : key(key) {}
         explicit Node(T key, int priority, Node *left, Node *right);
         ~Node();
-        void split();
-        void merge();
-        void insert();
-        void erase();
     private:
         T key;
         int priority{};

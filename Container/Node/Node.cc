@@ -21,24 +21,4 @@ namespace mit {
         free(right);
     }
 
-    template<class T>
-    void Node<T>::split() {
-
-    }
-
-    template<class T>
-    void Node<T>::merge() {
-
-    }
-
-    template<class T>
-    void Node<T>::insert() {
-
-    }
-
-    template<class T>
-    void Node<T>::erase() {
-
-    }
-
 } // mit
