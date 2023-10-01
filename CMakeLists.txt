@@ -7,7 +7,5 @@ include_directories(Container)
 include_directories(Iterator)
 
 add_executable(heap
-        Container/Heap.cc
-        Container/Heap.h
-        Iterator/HeapIterator.cc
-        Iterator/HeapIterator.h)
+        Container/Node/Node.cc
+        Container/Node/Node.h)
