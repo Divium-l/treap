@@ -4,14 +4,24 @@
 
 #pragma once
 
+#include <random>
+
 namespace mit {
 
     template<typename T>
     struct Node {
-        T value, priority;
+        T value;
+        int priority;
         Node *left, *right, *parent;
-        Node(): left(nullptr), right(nullptr), parent(nullptr) {}
-    };
 
+        explicit Node():
+                left(nullptr), right(nullptr), parent(nullptr), value(0), priority(rand()) {}
+
+        explicit Node(T value):
+                left(nullptr), right(nullptr), parent(nullptr), value(value), priority(rand()) { };
+
+        explicit Node(T value, int priority):
+                left(nullptr), right(nullptr), parent(nullptr), value(value), priority(priority) {  }
+    };
 }
 

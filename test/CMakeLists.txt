@@ -3,8 +3,8 @@ project(treap)
 
 set(CMAKE_CXX_STANDARD 23)
 
-include_directories(Container)
-include_directories(Iterator)
-
-add_executable(treap NodeTest.cc
-                DecartTreeTest.cc)
+enable_testing()
+add_executable(treapTest
+        DecartTreeTest.cc
+        NodeTest.cc)
+target_link_libraries(treapTest gtest gmock)

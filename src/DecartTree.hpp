@@ -27,17 +27,17 @@ namespace mit {
             }
         }
 
-        mit::Node<T> *merge(mit::Node<T> leftNode, mit::Node<T> rightNode) {
+        mit::Node<T> *merge(Node<int> *leftNode, mit::Node<T> *rightNode) {
             if (!leftNode) {
                 return rightNode;
             } else if (!rightNode) {
                 return leftNode;
             } else {
-                if (leftNode.priority > rightNode.priority) {
-                    leftNode.right = merge(leftNode.right, rightNode);
+                if (leftNode->priority > rightNode->priority) {
+                    leftNode->right = merge(leftNode->right, rightNode);
                     return leftNode;
                 } else {
-                    rightNode.left = merge(leftNode, rightNode.left);
+                    rightNode->left = merge(leftNode, rightNode->left);
                     return rightNode;
                 }
             }
@@ -77,7 +77,13 @@ namespace mit {
 
         void add(T value) {
             auto [leftTree, rightTree] = split(this->root, value);
-            mit::Node<T> *newNode = mit::Node<T>(value);
+            mit::Node<int> *newNode = new mit::Node<T>(value);
+            this->root = merge(leftTree, merge(newNode, rightTree));
+        }
+
+        void add(T value, int priority) {
+            auto [leftTree, rightTree] = split(this->root, value);
+            mit::Node<int> *newNode = new mit::Node<T>(value, priority);
             this->root = merge(leftTree, merge(newNode, rightTree));
         }
 
@@ -88,15 +94,15 @@ namespace mit {
         }
 
         bool contains(T value) {
-            contains(value);
+            return contains(value);
         }
 
         void clear() {
-
+            delete this->root;
         }
 
-        void remove(T value) {
-
+        mit::Node<T> *getRoot() {
+            return root;
         }
     };
 
