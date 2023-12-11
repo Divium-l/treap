@@ -6,16 +6,20 @@
 #define HEAP_DECARTTREE_H
 
 #include "Node.hpp"
+#include "CComparable.hpp"
 #include <utility>
+#include <memory>
 
 namespace mit {
 
-    template<typename T>
+    template<mit::CComparable T>
     class DecartTree {
     private:
-        mit::Node<T> *root;
+        typedef std::shared_ptr<mit::Node<T>> Node;
 
-        bool contains(T value, mit::Node<T> node) {
+        Node root;
+
+        bool contains(T value, Node node) {
             if (node == nullptr) {
                 return false;
             } else if (node.value == value) {
@@ -27,7 +31,7 @@ namespace mit {
             }
         }
 
-        mit::Node<T> *merge(Node<int> *leftNode, mit::Node<T> *rightNode) {
+        std::shared_ptr<mit::Node<T>> merge(Node leftNode, Node rightNode) {
             if (!leftNode) {
                 return rightNode;
             } else if (!rightNode) {
@@ -43,47 +47,46 @@ namespace mit {
             }
         }
 
-        std::pair<mit::Node<T> *, mit::Node<T> *> split(mit::Node<T> *node, int keyForSplit) {
+        std::pair<Node, Node> _split(Node node, T keyForSplit) {
             if (!node) {
                 return {nullptr, nullptr};
             } else {
                 if (node->value <= keyForSplit) {
-                    auto [left, right] = split(node->right, keyForSplit);
+                    auto [left, right] = _split(node->right, keyForSplit);
                     node->right = left;
                     return {node, right};
                 } else {
-                    auto [left, right] = split(node->left, keyForSplit);
+                    auto [left, right] = _split(node->left, keyForSplit);
                     node->left = right;
-                    return {left, right};
+                    return {left, node};
                 }
             }
         }
 
     public:
         DecartTree() : root(nullptr) {}
-        ~DecartTree() {
-            delete root;
-        }
+        ~DecartTree() = default;
 
         void merge(mit::DecartTree<T> treeForMerge) {
             this->root = merge(this->root, treeForMerge.root);
         }
 
-        std::pair<mit::Node<T> *, mit::Node<T> *> split(int keyForSplit) {
-            auto [leftTree, rightTree] = split(this->root, keyForSplit);
+        std::pair<Node, Node> split(T keyForSplit) {
+            auto [leftTree, rightTree] = _split(this->root, keyForSplit);
             this->root = leftTree;
             return {leftTree, rightTree};
         }
 
         void add(T value) {
-            auto [leftTree, rightTree] = split(this->root, value);
-            mit::Node<int> *newNode = new mit::Node<T>(value);
+            auto [leftTree, rightTree] = _split(this->root, value);
+            auto newNode = Node(new mit::Node(value));
+
             this->root = merge(leftTree, merge(newNode, rightTree));
         }
 
         void add(T value, int priority) {
-            auto [leftTree, rightTree] = split(this->root, value);
-            mit::Node<int> *newNode = new mit::Node<T>(value, priority);
+            auto [leftTree, rightTree] = _split(this->root, value);
+            Node newNode = Node(new mit::Node(value, priority));
             this->root = merge(leftTree, merge(newNode, rightTree));
         }
 
@@ -101,7 +104,7 @@ namespace mit {
             delete this->root;
         }
 
-        mit::Node<T> *getRoot() {
+        Node getRoot() {
             return root;
         }
     };
