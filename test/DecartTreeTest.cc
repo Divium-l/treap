@@ -30,6 +30,7 @@ TEST(DecartTreeTest, InsertIntoTreeSuccess) {
 
     ASSERT_EQ(root->value, 10);
     ASSERT_EQ(root->priority, 100);
+    // test fail here
     ASSERT_EQ(root->left->value, 20);
     ASSERT_EQ(root->left->priority, 10);
     ASSERT_EQ(root->right->value, 30);
