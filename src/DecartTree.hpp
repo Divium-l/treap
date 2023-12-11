@@ -6,12 +6,13 @@
 #define HEAP_DECARTTREE_H
 
 #include "Node.hpp"
+#include "CComparable.hpp"
 #include <utility>
 #include <memory>
 
 namespace mit {
 
-    template<typename T>
+    template<mit::CComparable T>
     class DecartTree {
     private:
         typedef std::shared_ptr<mit::Node<T>> Node;
