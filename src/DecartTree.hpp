@@ -78,7 +78,7 @@ namespace mit {
 
         void add(T value) {
             auto [leftTree, rightTree] = _split(this->root, value);
-            auto newNode = Node(value);
+            auto newNode = Node(new mit::Node(value));
 
             this->root = merge(leftTree, merge(newNode, rightTree));
         }
