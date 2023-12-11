@@ -44,6 +44,14 @@ TEST(DecartTreeTest, InsertDataWithoutPriorityIntoTreeSuccess) {
 	tree->add(20);
 
 	auto root = tree->getRoot();
+
+//	ASSERT_EQ(root->value, 100);
+//	ASSERT_EQ(root->left->value, 20);
+//	ASSERT_EQ(root->left->right->value, 10);
+}
+
+TEST(DecartTreeTest, InsertArrayOfDataIntoTreeSuccess) {
+
 }
 
 int main(int argc, char **argv) {
