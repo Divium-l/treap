@@ -47,7 +47,7 @@ namespace mit {
             }
         }
 
-        std::pair<Node, Node> _split(Node node, int keyForSplit) {
+        std::pair<Node, Node> _split(Node node, T keyForSplit) {
             if (!node) {
                 return {nullptr, nullptr};
             } else {
@@ -71,7 +71,7 @@ namespace mit {
             this->root = merge(this->root, treeForMerge.root);
         }
 
-        std::pair<Node, Node> split(int keyForSplit) {
+        std::pair<Node, Node> split(T keyForSplit) {
             auto [leftTree, rightTree] = _split(this->root, keyForSplit);
             this->root = leftTree;
             return {leftTree, rightTree};
