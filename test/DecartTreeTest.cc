@@ -5,6 +5,12 @@
 #include <gtest/gtest.h>
 #include "../src/DecartTree.hpp"
 
+struct TestClass {
+    int state;
+
+    explicit TestClass(int state) : state(state) {}
+};
+
 TEST(DecartTreeTest, CreateTreeSuccess) {
     auto *tree = new mit::DecartTree<int>();
 
