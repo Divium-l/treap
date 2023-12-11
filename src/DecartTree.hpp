@@ -57,7 +57,7 @@ namespace mit {
                 } else {
                     auto [left, right] = _split(node->left, keyForSplit);
                     node->left = right;
-                    return {left, right};
+                    return {left, node};
                 }
             }
         }
@@ -78,7 +78,7 @@ namespace mit {
 
         void add(T value) {
             auto [leftTree, rightTree] = _split(this->root, value);
-            auto newNode = Node(value);
+            auto newNode = Node(new mit::Node(value));
 
             this->root = merge(leftTree, merge(newNode, rightTree));
         }
