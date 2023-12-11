@@ -5,6 +5,7 @@
 #pragma once
 
 #include <random>
+#include <memory>
 
 namespace mit {
 
@@ -12,7 +13,7 @@ namespace mit {
     struct Node {
         T value;
         int priority;
-        Node *left, *right, *parent;
+        std::shared_ptr<Node<T>> left, right, parent;
 
         explicit Node():
                 left(nullptr), right(nullptr), parent(nullptr), value(0), priority(rand()) {}
