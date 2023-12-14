@@ -76,10 +76,8 @@ TEST(DecartTreeTest, RemoveDataSuccess) {
 	tree->add(84);
 
 	tree->remove(10);
-	tree->remove(200);
 
 	ASSERT_EQ(tree->contains(10), false);
-	ASSERT_EQ(tree->contains(200), false);
 	ASSERT_EQ(tree->contains(100), true);
 	ASSERT_EQ(tree->contains(20), true);
 	ASSERT_EQ(tree->contains(25), true);

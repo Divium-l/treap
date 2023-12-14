@@ -90,8 +90,8 @@ namespace mit {
             this->root = _merge(leftTree, _merge(newNode, rightTree));
         }
 
-        void addAll(T *value) {
-            for (auto data: value) {
+        void addAll(T *values) {
+            for (auto data: values) {
                 this->add(data);
             }
         }
