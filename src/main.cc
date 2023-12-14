@@ -3,13 +3,7 @@
 //
 #include "DecartTree.hpp"
 
-void fillTree() {
-	auto tree = mit::DecartTree<int>();
-
-	for (int i = 0; i < 1000; i++) {
-		tree.add(rand());
-	}
-}
+void fillTree();
 
 int main() {
 	for (int i = 0; i < 100; i++) {
@@ -17,4 +11,12 @@ int main() {
 	}
 
     return 0;
+}
+
+void fillTree() {
+    auto tree = mit::DecartTree<int>();
+
+    for (int i = 0; i < 1000; i++) {
+        tree.add(rand());
+    }
 }
