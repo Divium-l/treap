@@ -37,6 +37,17 @@ TEST(DecartTreeTest, InsertDataWithPriorityIntoTreeSuccess) {
     ASSERT_EQ(root->left->right->priority, 10);
 }
 
+TEST(DecartTreeTest, ContainsInTreeSuccess) {
+	auto *tree = new mit::DecartTree<int>();
+
+	tree->add(10, 100);
+	tree->add(30, 120);
+	tree->add(20, 10);
+
+	ASSERT_EQ(tree->contains(10), true);
+	ASSERT_EQ(tree->contains(300), false);
+}
+
 TEST(DecartTreeTest, InsertTestClassDataWithPriorityIntoTreeSuccess) {
     auto *tree = new mit::DecartTree<TestClass>();
 
@@ -54,22 +65,37 @@ TEST(DecartTreeTest, InsertTestClassDataWithPriorityIntoTreeSuccess) {
     ASSERT_EQ(root->left->right->priority, 10);
 }
 
-TEST(DecartTreeTest, InsertDataWithoutPriorityIntoTreeSuccess) {
+TEST(DecartTreeTest, RemoveDataSuccess) {
+	auto *tree = new mit::DecartTree<int>();
+
+	tree->add(10);
+	tree->add(100);
+	tree->add(20);
+	tree->add(200);
+	tree->add(25);
+	tree->add(84);
+
+	tree->remove(10);
+	tree->remove(200);
+
+	ASSERT_EQ(tree->contains(10), false);
+	ASSERT_EQ(tree->contains(200), false);
+	ASSERT_EQ(tree->contains(100), true);
+	ASSERT_EQ(tree->contains(20), true);
+	ASSERT_EQ(tree->contains(25), true);
+	ASSERT_EQ(tree->contains(84), true);
+
+}
+
+TEST(DecartTreeTest, DeleteTreeSuccess) {
 	auto *tree = new mit::DecartTree<int>();
 
 	tree->add(10);
 	tree->add(100);
 	tree->add(20);
 
-	auto root = tree->getRoot();
-
-//	ASSERT_EQ(root->value, 100);
-//	ASSERT_EQ(root->left->value, 20);
-//	ASSERT_EQ(root->left->right->value, 10);
-}
-
-TEST(DecartTreeTest, InsertArrayOfDataIntoTreeSuccess) {
-
+	tree->clear();
+	ASSERT_EQ(tree->getRoot(), nullptr);
 }
 
 int main(int argc, char **argv) {
