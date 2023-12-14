@@ -29,6 +29,10 @@ namespace mit {
         }
 
     protected:
+		/**
+		 * @brief Pseudorandom number generator for priority and/or value of node
+		 * @return  Pseudorandom number
+		 */
         static int randomInt() {
             auto randomDevice = std::random_device();
             auto mt = std::mt19937(randomDevice());
