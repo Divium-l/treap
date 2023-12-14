@@ -67,51 +67,51 @@ namespace mit {
         DecartTree() : root(nullptr) {}
         ~DecartTree() = default;
 
-        void merge(mit::DecartTree<T> treeForMerge) {
+        [[maybe_unused]] void merge(mit::DecartTree<T> treeForMerge) {
             this->root = _merge(this->root, treeForMerge.root);
         }
 
-        std::pair<Node, Node> split(T keyForSplit) {
+        [[maybe_unused]] std::pair<Node, Node> split(T keyForSplit) {
             auto [leftTree, rightTree] = _split(this->root, keyForSplit);
             this->root = leftTree;
             return {leftTree, rightTree};
         }
 
-        void add(T value) {
+        [[maybe_unused]] void add(T value) {
             auto [leftTree, rightTree] = _split(this->root, value);
             auto newNode = Node(new mit::Node(value));
 
             this->root = _merge(leftTree, _merge(newNode, rightTree));
         }
 
-        void add(T value, int priority) {
+        [[maybe_unused]] void add(T value, int priority) {
             auto [leftTree, rightTree] = _split(this->root, value);
             Node newNode = Node(new mit::Node(value, priority));
             this->root = _merge(leftTree, _merge(newNode, rightTree));
         }
 
-        void addAll(T *value) {
+        [[maybe_unused]] void addAll(T *value) {
             for (auto data: value) {
                 this->add(data);
             }
         }
 
-        bool contains(T value) {
+        [[maybe_unused]] bool contains(T value) {
             return _contains(value, this->root);
         }
 
-        void clear() {
+        [[maybe_unused]] void clear() {
             root = nullptr;
         }
 
-		void remove(T value) {
+        [[maybe_unused]] void remove(T value) {
 			if (this->contains(value)) {
 				auto [left, right] = this->split(value);
 				this->root = _merge(right, _merge(left->left, left->right));
 			}
 		}
 
-        Node getRoot() {
+        [[maybe_unused]] Node getRoot() {
             return root;
         }
 
