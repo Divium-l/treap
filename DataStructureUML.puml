@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+struct Node {
++{field}T value
++{field}int priority
++{field}std::shared_ptr<Node<T>> left
++{field}std::shared_ptr<Node<T>> right
++{field}std::shared_ptr<Node<T>> parent
++{method}Node()
++{method}Node(T value)
++{method}Node((T value, int priority)
+}
+
+class DecartTree {
+-{field}std::shared_ptr<Node<T>> root
+-{method}bool _contains(T value, std::shared_ptr<Node<T>> node)
+-{method}std::shared_ptr<Node<T>> _merge(std::shared_ptr<Node<T>> leftNode, std::shared_ptr<Node<T>> rightNode)
+-{method}std::pair<std::shared_ptr<Node<T>>, std::shared_ptr<Node<T>>> _split(std::shared_ptr<Node<T>> node, T keyForSplit
++{method}DecartTree()
++{method}~DecartTree()
++{method}void merge(DecartTree<T> treeForMerge)
++{method}std::pair<std::shared_ptr<Node<T>>, std::shared_ptr<Node<T>>> split(T keyForSplit)
++{method}void add(T value, int priority}
++{method}void addAll(T *values)
++{method}bool contains(T value)
++{method}void remove(T value)
++{method}std::shared_ptr<Node<T>> getRoot()
++{method}operator<<
+}
+
+DecartTree*--Node
+
+@enduml
