@@ -19,29 +19,29 @@ namespace mit {
 
         Node root;
 
-        bool contains(T value, Node node) {
-            if (node == nullptr) {
-                return false;
-            } else if (node.value == value) {
-                return true;
-            } else if (node.value >= value) {
-                find(node.left);
-            } else {
-                find(node.right);
-            }
+        bool _contains(T value, Node node) {
+			if (node == nullptr) {
+				return false;
+			} else if (node->value == value) {
+				return true;
+			} else if (node->value >= value) {
+				return _contains(value, node->left);
+			} else {
+				return _contains(value, node->right);
+			}
         }
 
-        std::shared_ptr<mit::Node<T>> merge(Node leftNode, Node rightNode) {
+        Node _merge(Node leftNode, Node rightNode) {
             if (!leftNode) {
                 return rightNode;
             } else if (!rightNode) {
                 return leftNode;
             } else {
                 if (leftNode->priority > rightNode->priority) {
-                    leftNode->right = merge(leftNode->right, rightNode);
+                    leftNode->right = _merge(leftNode->right, rightNode);
                     return leftNode;
                 } else {
-                    rightNode->left = merge(leftNode, rightNode->left);
+                    rightNode->left = _merge(leftNode, rightNode->left);
                     return rightNode;
                 }
             }
@@ -68,7 +68,7 @@ namespace mit {
         ~DecartTree() = default;
 
         void merge(mit::DecartTree<T> treeForMerge) {
-            this->root = merge(this->root, treeForMerge.root);
+            this->root = _merge(this->root, treeForMerge.root);
         }
 
         std::pair<Node, Node> split(T keyForSplit) {
@@ -81,13 +81,13 @@ namespace mit {
             auto [leftTree, rightTree] = _split(this->root, value);
             auto newNode = Node(new mit::Node(value));
 
-            this->root = merge(leftTree, merge(newNode, rightTree));
+            this->root = _merge(leftTree, _merge(newNode, rightTree));
         }
 
         void add(T value, int priority) {
             auto [leftTree, rightTree] = _split(this->root, value);
             Node newNode = Node(new mit::Node(value, priority));
-            this->root = merge(leftTree, merge(newNode, rightTree));
+            this->root = _merge(leftTree, _merge(newNode, rightTree));
         }
 
         void addAll(T *value) {
@@ -97,16 +97,27 @@ namespace mit {
         }
 
         bool contains(T value) {
-            return contains(value);
+            return _contains(value, this->root);
         }
 
         void clear() {
-            delete this->root;
+            root = nullptr;
         }
+
+		void remove(T value) {
+			if (this->contains(value)) {
+				auto [left, right] = this->split(value);
+				this->root = _merge(right, _merge(left->left, left->right));
+			}
+		}
 
         Node getRoot() {
             return root;
         }
+
+		friend std::ostream& operator<<(std::ostream& ostream, mit::DecartTree<T>& tree) {
+			return ostream;
+		}
     };
 
 } // mit
