@@ -21,7 +21,12 @@ namespace mit {
                 left(nullptr), right(nullptr), parent(nullptr), value(value), priority(randomInt()) {}
 
         explicit Node(T value, int priority):
-                left(nullptr), right(nullptr), parent(nullptr), value(value), priority(priority) {}
+                left(nullptr), right(nullptr), parent(nullptr), value(value), priority(priority) {};
+
+        friend std::ostream& operator<<(std::ostream& ostream, mit::Node<T>& node) {
+            ostream << "{" << "Priority: " << node.priority << ", " << "Value: " << node.value << "}";
+            return ostream;
+        }
 
     protected:
         static int randomInt() {

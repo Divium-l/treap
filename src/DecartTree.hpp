@@ -9,6 +9,7 @@
 #include "CComparable.hpp"
 #include <utility>
 #include <memory>
+#include <sstream>
 
 namespace mit {
 
@@ -63,6 +64,18 @@ namespace mit {
             }
         }
 
+        static void _inOrderPrint(Node node, std::ostream& ostream) {
+            if (node == nullptr) {
+                return;
+            }
+            else {
+                ostream << *node << ", ";
+            }
+
+            _inOrderPrint(node->left, ostream);
+            _inOrderPrint(node->right, ostream);
+        }
+
     public:
         DecartTree() : root(nullptr) {}
         ~DecartTree() = default;
@@ -115,8 +128,15 @@ namespace mit {
             return root;
         }
 
+        [[maybe_unused]] void map(void (*lambda)(Node node)) {
+
+        }
+
 		friend std::ostream& operator<<(std::ostream& ostream, mit::DecartTree<T>& tree) {
-			return ostream;
+            ostream << "Treap: [";
+            _inOrderPrint(tree.root, ostream);
+            ostream << "]";
+            return ostream;
 		}
     };
 
