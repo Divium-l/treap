@@ -16,10 +16,10 @@ struct Node {
 
 class DecartTree {
 -{field}std::shared_ptr<Node<T>> root
--{method}bool _contains(T value, std::shared_ptr<Node<T>> node)
--{method}std::shared_ptr<Node<T>> _merge(std::shared_ptr<Node<T>> leftNode, std::shared_ptr<Node<T>> rightNode)
--{method}std::pair<std::shared_ptr<Node<T>>, std::shared_ptr<Node<T>>> _split(std::shared_ptr<Node<T>> node, T keyForSplit
--{method}static void _inOrderPrint(std::shared_ptr<Node<T>> node, std::ostream &ostream)
+-{method}bool contains_(T value, std::shared_ptr<Node<T>> node)
+-{method}std::shared_ptr<Node<T>> merge_(std::shared_ptr<Node<T>> leftNode, std::shared_ptr<Node<T>> rightNode)
+-{method}std::pair<std::shared_ptr<Node<T>>, std::shared_ptr<Node<T>>> split_(std::shared_ptr<Node<T>> node, T keyForSplit
+-{method}static void inOrderPrint_(std::shared_ptr<Node<T>> node, std::ostream &ostream)
 +{method}DecartTree()
 +{method}~DecartTree()
 +{method}void merge(DecartTree<T> treeForMerge)
